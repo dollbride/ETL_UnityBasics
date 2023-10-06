@@ -22,10 +22,9 @@
         {
             MyDynamicArray inventory = new MyDynamicArray();
             
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)    //10개의 SlotData 클래스 생성
             {
                 inventory.Add(new SlotData(0, 0));
-                
             }
 
             inventory[0] = new SlotData((int)ItemID.RedPotion, 40);
