@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delegates", "Delegates\Dele
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boxing", "Boxing\Boxing.csproj", "{63B03546-EAF1-4011-BC2A-470EFE7DC604}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collections", "Collections\Collections.csproj", "{1D6FBFFB-6632-45E7-AA2E-E87E6033BBCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collections", "Collections\Collections.csproj", "{1D6FBFFB-6632-45E7-AA2E-E87E6033BBCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicArrayPotions", "DynamicArrayPotions\DynamicArrayPotions.csproj", "{4B1A52F1-46BF-4444-BB30-AE82030BA3A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{1D6FBFFB-6632-45E7-AA2E-E87E6033BBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D6FBFFB-6632-45E7-AA2E-E87E6033BBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D6FBFFB-6632-45E7-AA2E-E87E6033BBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B1A52F1-46BF-4444-BB30-AE82030BA3A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B1A52F1-46BF-4444-BB30-AE82030BA3A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B1A52F1-46BF-4444-BB30-AE82030BA3A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B1A52F1-46BF-4444-BB30-AE82030BA3A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
