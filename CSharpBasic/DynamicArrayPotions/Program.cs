@@ -140,7 +140,56 @@ namespace Collections
             #endregion
 
             #region Linked List
-            
+            ////스트링 타입
+            //LinkedList<string> linkedList = new LinkedList<string>();
+            //linkedList.AddFirst("Apple");
+            //linkedList.AddLast("Banana");
+            //linkedList.AddLast("Lemon");
+
+            //LinkedListNode<string> node1 = linkedList.Find("Banana");
+            //LinkedListNode<string> newNode = new LinkedListNode<string>("Grape");
+
+            //// 새 Grape 노드를 Banana 노드 뒤에 추가
+            //linkedList.AddAfter(node1, newNode);
+
+            //// Enumerator 리스트 출력
+            //foreach (string item in linkedList)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //인트 타입
+            LinkedList<int> intList = new LinkedList<int>();
+            intList.AddFirst(0);
+            intList.AddLast(5);
+            intList.AddLast(6);
+            Console.WriteLine(intList.First); // 이걸 할 때 왜 0이 아닐까
+
+            LinkedListNode<int> node1st = intList.Find(0);
+            LinkedListNode<int> newNode = new LinkedListNode<int>(3);
+            intList.AddAfter(node1st, newNode);
+
+            foreach (int x in intList)
+            {
+                Console.WriteLine(x);
+            }
+
+            // 오브젝트 타입
+            LinkedList<object> objectList = new LinkedList<object>();
+            objectList.AddFirst(1);
+            objectList.AddLast("Last");
+            objectList.AddLast(0.3f);
+
+            LinkedListNode<object> nodeZero = objectList.Find(1);
+            LinkedListNode<object> newObject = new LinkedListNode<object>("Apple");
+            objectList.AddAfter(nodeZero, newObject);
+
+            foreach(object x in objectList)
+            {
+                Console.WriteLine(x);
+            }
+           
+
             #endregion
         }
     }
