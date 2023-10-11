@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 
-namespace Collections
+namespace DynamicArrayPotions
 {
     internal class MyDynamicArray<T> : IEnumerable<T>
-        //where 제한자 : 타입을 제한하는 한정자 (T에 넣을 타입은 IComparable<T>로 공변 가능해야 한다)
+        // where 제한자 : 타입을 제한하는 한정자 (T에 넣을 타입은 IComparable<T>로 공변 가능해야 한다)
+        // IComparable에서 구현하고 있는 모든 기능들을 쓸 수 있다.
         where T : IComparable<T>
     {
         //시간복잡도 O(1) : 딱 한 번만 연산
