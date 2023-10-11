@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace DynamicArrayPotions
 {
-    public struct KeyValuePair<T, K> : IEquatable<KeyValuePair<T, K>> where T : IEquatable<T> where K : IEquatable<K>
+    // 버킷 최소 단위 구현(Key와 Value를 한 쌍으로 갖는 구조체)
+    public struct KeyValuePair<T, K> : IEquatable<KeyValuePair<T, K>>
+        where T : IEquatable<T> where K : IEquatable<K>
     {
         public T? Key;
         public K? Value;
@@ -25,8 +28,8 @@ namespace DynamicArrayPotions
 
     // TKey랑 TValue가 무슨 타입인지는 메인 프로그램에서 호출할 때 정의함
     internal class MyHashtable<TKey, TValue>
-        where TKey : IEquatable<TKey>
-        where TValue : IEquatable<TValue>
+        where TKey : IEquatable<TKey>, IEnumerable<TKey>
+        where TValue : IEquatable<TValue>, IEnumerable<TValue>
     {
         public TValue this[TKey abc]
         {
@@ -178,11 +181,33 @@ namespace DynamicArrayPotions
         {
             // List의 리무브 기능 이용해서 구현하기
             // 1. 해시 인덱스 구해서 버킷 찾음
+            int index = Hash(key);
+            List<KeyValuePair<TKey, TValue>> bucket = _buckets[index];
+
             // 2. 버킷에서 내가 원하는 key와 동일한 KeyValuePair 있는지 확인
-            // 3. 있으면 해당 KeyValuePair를 버킷에서 삭제
-            // 4. 삭제했는데 만약 현재 버킷의 아이템 개수가 0개면 유효한 인덱스 리스트에서 해당 인덱스 제거
+            if (bucket != null)
+            {
+                for (int i = 0; i < bucket.Count; i++)
+                {
+                    if (bucket[i].Key.Equals(key))
+                    {
+                        // 3. 있으면 해당 KeyValuePair를 버킷에서 삭제
+                        bucket.Remove(bucket[i]);
+
+                        // 4. 삭제했는데 만약 현재 버킷의 아이템 개수가 0개면 유효한 인덱스 리스트에서 해당 인덱스 제거
+                        if (bucket.Count == 0)
+                        {
+                            _validIndexList.Remove(index);
+                        }
+
+                        return true;
+                    }
+                }
+
+                return false;
+            }     
+            
         }
-        // 이뉴머레이터 구현
 
         public int Hash(TKey key)
         {
@@ -195,5 +220,56 @@ namespace DynamicArrayPotions
             result %= DEFAULT_SIZE;
             return result;
         }
-    }
+
+        // 이뉴머레이터 구현
+        public IEnumerator<Tkey, TValue> GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
+
+        public struct Enumerator : IEnumerator<TKey, TValue>
+        {
+            public IEnumerator.Current => bucket;
+
+            int index = Hash(TKey key);
+            List<KeyValuePair<TKey, TValue>> bucket = _buckets[index];
+
+            private List<KeyValuePair<TKey, TValue>>[] _buckets
+            = new List<KeyValuePair<TKey, TValue>>[DEFAULT_SIZE];
+            private List<int> _validIndexList = new List<int>();  // 등록된 Key 값이 있는 인덱스 목록
+
+
+            public Enumerator(MyHashtable<TKey, TValue> data)
+            {
+                _data = data;
+                _node = _error = new MyHashtable<TKey, TValue>(default);  // 인덱스 -1 대신 노드에서는 null로 시작
+            }
+
+            // 책 읽을 때 필요했던 자원들(리소스)을 메모리에서 해제하는 내용을 구현하는 부분
+            public void Dispose()
+            {
+                //throw new NotImplementedException();
+            }
+
+            // 다음 페이지로
+            public bool MoveNext()
+            {
+                if (_node == null)
+                    return false;
+
+                _node = _node == _error ? _data._first : _node.Next;
+                return _node != null;
+            }
+
+            // 책 덮기
+            public void Reset()
+            {
+                _node = _error;
+            }
+        }
 }
