@@ -197,6 +197,9 @@ namespace DynamicArrayPotions
             //Remove(Find(x => x.CompareTo(value) == 0)); 이렇게 써고 됨
         }
 
+        #endregion
+
+        #region IEnumerator 구현
         public bool RemoveLast(T value)
         {
             return Remove(FindLast(x => x.Equals(value)));
@@ -253,8 +256,6 @@ namespace DynamicArrayPotions
         }
 
         #endregion
-
-
 
     }
 }

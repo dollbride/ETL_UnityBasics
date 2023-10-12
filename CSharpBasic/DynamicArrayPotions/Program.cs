@@ -147,12 +147,58 @@ namespace DynamicArrayPotions
             linkedList.AddFirst(3);
             linkedList.Find(x => x > 0);
 
+            //bool IsBiggerThan0(int x)
+            //{
+            //    return x > 0;
+            //}
+
             #endregion
-        }
-        
-        bool IsBiggerThan0(int x)
-        {
-            return x > 0;
+
+            Console.WriteLine($"\n-----My Hashtable below-----\n");
+
+            #region Hashtable
+
+            MyHashtable<string, float> myHashtable = new MyHashtable<string, float>();
+            myHashtable.Add("Luke", 90.0f);
+            myHashtable.Add("Calm", 80.0f);
+
+            foreach (var item in myHashtable)
+            {
+                Console.WriteLine($"{item.Key}의 점수 : {item.Value}");
+            }
+
+            foreach (var item in myHashtable.Keys)
+            {
+                Console.WriteLine($"이름 : {item}");
+            }
+
+            foreach (var item in myHashtable.Values)
+            {
+                Console.WriteLine($"점수들 : {item}");
+            }
+
+            // C# 제공 해시테이블
+            Hashtable hashtable = new Hashtable();
+            hashtable.Add("철수", 90.0f);
+
+
+            // C# 제공 제네릭 타입 해시테이블
+            Dictionary<string, float> dictionary = new Dictionary<string, float>();
+            dictionary.Add("영희", 30.0f);
+
+            foreach (var item in dictionary)
+            {
+                Console.WriteLine($"{item.Key}의 점수 : {item.Value}");
+            }
+
+            //C# 제공 Hashset
+            HashSet<string> keys = new HashSet<string>();
+            keys.Add("a");
+            keys.Add("b");
+
+
+            #endregion
+
         }
     }
 }
