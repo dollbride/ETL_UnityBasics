@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.WebSockets;
 
 namespace Collections
 {
@@ -24,8 +25,8 @@ namespace Collections
             this.num = num;
         }
 
-        public int CompareTo(SlotData? other) 
-        { 
+        public int CompareTo(SlotData? other)
+        {
             return this.id == other?.id && this.num == other?.num ? 0 : -1;
         }
     }
@@ -144,7 +145,7 @@ namespace Collections
             #endregion
 
             #region Linked List
-            
+
             MyLinkedList<int> linkedList = new MyLinkedList<int>();
             linkedList.AddFirst(3);
             linkedList.Find(x => x > 0);
@@ -201,6 +202,78 @@ namespace Collections
 
             #endregion
 
+            IEnumerator routine = GetMakingToastRoutine2();
+
+            while (routine.MoveNext())
+            {
+                Console.WriteLine(routine.Current);
+            }
+
+            foreach (var item in NumberEnumerationRoutine())
+            {
+                Console.WriteLine(item);
+            }
+
+
         }
+
+
+
+        static IEnumerator GetMakingToastRoutine()
+        {
+            return new MakingToastRoutine();
+        }
+
+        static IEnumerator GetMakingToastRoutine2()
+        {
+            yield return "Induction On";
+            yield return "Pan ready";
+            yield return "Toast ready";
+            // struct 따로 정의하고 생성자 만들 필요 없이 yield로 간단히 정의.
+            // 컴파일 시 객체를 알아서 만들고 MoveNext()도 알아서 채워준다.
+        }
+
+        static IEnumerable NumberEnumerationRoutine()
+        {
+            yield return 1;
+            yield return 2;
+            yield return 3;
+        }
+
+        struct MakingToastRoutine : IEnumerator
+        {
+            public object Current => _routine[_step];
+            private string[] _routine =
+            {
+                "Induction On",
+                "Pan ready",
+                "Put Butter",
+                "Put Bread",
+                "Wait until bread toasted",
+                "Put jam",
+                "Induction Off",
+                "Toast ready"
+            };
+            private int _step = -1;
+
+            public MakingToastRoutine()
+            {
+
+            }
+
+            public bool MoveNext()
+            {
+                if (_step >= _routine.Length)
+                    return false;
+                _step++;
+                return _step < _routine.Length;
+            }
+
+            public void Reset()
+            {
+                _step = -1;
+            }
+        }
+
     }
 }
