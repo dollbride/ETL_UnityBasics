@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamicArrayPotions
+namespace Collections
 {
     internal class AVLTree<T>
         where T : IComparable<T>

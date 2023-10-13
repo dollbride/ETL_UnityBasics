@@ -1,6 +1,6 @@
 ﻿namespace Collections
 {
-    internal class MyDynamicArray
+    internal class MyDynamicArrayObject
     {
         public object this[int index]
         {

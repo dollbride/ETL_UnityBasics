@@ -101,8 +101,8 @@ namespace SortAlgos
         {
             int part1 = start;
             int part2 = mid + 1;
-            int length1 = mid - start + 1;
-            int length2 = end - mid;
+            int length1 = mid - start + 1;  // part1의 길이
+            int length2 = end - mid;  // part2의 길이
 
             int[] copy1 = new int[length1];
             int[] copy2 = new int[length2];
@@ -142,7 +142,7 @@ namespace SortAlgos
         {
             if (start < end)
             {
-                int mid = end + (start - end) / 2 - 1; // == (start + end ) /2 - 1, Overflow 방지용
+                int mid = end + (start - end + 1) / 2 - 1; // == (start + end ) /2 - 1, Overflow 방지용
                 RecursiveMergeSort(arr, start, mid);
                 RecursiveMergeSort(arr, mid + 1, end);
 
@@ -198,6 +198,7 @@ namespace SortAlgos
             }
         }
 
+        // 퀵소트에서 나눌 부분을 찾는 함수
         private static int Partition(int[] arr, int start, int end)
         {
             int pivot = arr[(start + end) / 2];

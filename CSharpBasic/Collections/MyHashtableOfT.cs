@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynamicArrayPotions
+namespace Collections
 {
     // 버킷 최소 단위 구현(Key와 Value를 한 쌍으로 갖는 구조체)
     public struct KeyValuePair<T, K> : IEquatable<KeyValuePair<T, K>>
