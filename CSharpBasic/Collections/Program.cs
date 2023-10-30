@@ -128,6 +128,7 @@ namespace Collections
             list.Find(x => x == "철수");
             list.Add("영희");
             Console.WriteLine(list[0]);
+
             #endregion
 
             #region Queue
