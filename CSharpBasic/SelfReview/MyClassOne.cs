@@ -16,6 +16,9 @@
     {
         static void Main(string[] args)
         {
+            int[] arr = new int[] { 1, 2, 3 };
+            arr[0] = 10;
+            arr[1] = 20;
             //MyClass.x = 5.0f;
 
             //MyClass myClass = new MyClass();

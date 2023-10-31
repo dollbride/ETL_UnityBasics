@@ -6,14 +6,20 @@ using SelfReview;
 public class CollectionReview
 {
     int[] arr = new int[3];
+    int a = 3;
+    //필드에서는 초기화만 가능하다!
+    //int[] arr = new int[]{1,2,3}; 이렇게 초기값을 직접 넣던지
+    //배열 선언만 하던지.
 
-    public void ArrAdd()
-    {
-        arr[0] = 10;
-        arr[1] = 20;
-    }
+    //public void ArrAdd()
+    //{
+    //    arr[0] = 10;
+    //    arr[1] = 20;
+    //}
     public void ArrRead()
     {
+        arr[0] = 10;
+        a = 4;
         for (int i = 0; i < arr.Length; i++)
         {
             Console.Write($"{arr[i]}\t");
